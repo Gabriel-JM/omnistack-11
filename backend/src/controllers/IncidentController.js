@@ -44,6 +44,10 @@ module.exports = {
             .where('id', id)
             .select('ong_id')
             .first()
+
+        if(!incident) {
+            return res.status(400).json({ error: 'Incident not found!' })
+        }
         
         if(incident.ong_id !== ong_id) {
             return res.status(401).json({ error: 'Operation unathorized.' })
