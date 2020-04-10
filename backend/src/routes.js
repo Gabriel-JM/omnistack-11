@@ -22,7 +22,11 @@ routes.post('/ongs', celebrate({
 routes.get('/incidents', celebrate({
     [Segments.QUERY]: Joi.object().keys({
         page: Joi.number()
-    })
+    }),
+
+    [Segments.HEADERS]: Joi.object({
+        authorization: Joi.string().required().length(8)
+    }).unknown()
 }), IncidentController.index)
 
 routes.post('/incidents', celebrate({
